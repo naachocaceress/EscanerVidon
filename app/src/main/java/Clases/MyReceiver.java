@@ -49,9 +49,8 @@ public class MyReceiver  extends BroadcastReceiver {
 
             if (cursor.moveToFirst()) {
                 int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
-                if (columnIndex != -1) {
                 if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(columnIndex)) {
-                    String uriString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                    @SuppressLint("Range") String uriString = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
                     File file = new File(Uri.parse(uriString).getPath());
 
                     Intent pantallaInstall = new Intent(Intent.ACTION_VIEW);
@@ -66,11 +65,6 @@ public class MyReceiver  extends BroadcastReceiver {
 
                     Log.e("MsjDescarga", "se descargó sin problemas");
                 }
-
-            } else {
-                // La columna no existe en el cursor, maneja el error o realiza alguna acción adecuada.
-                Log.e("Error", "La columna COLUMN_STATUS no existe en el cursor");
-            }
             }
         }
     }
@@ -90,7 +84,7 @@ public class MyReceiver  extends BroadcastReceiver {
         File miFile = new File(Environment.getExternalStorageDirectory(), "apk");
         boolean isCreada = miFile.exists();
 
-        if(isCreada == false){
+        if(!isCreada){
             isCreada = miFile.mkdirs();
         }
 
