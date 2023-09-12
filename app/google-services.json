@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "669447044450",
-    "project_id": "escanervidon",
-    "storage_bucket": "escanervidon.appspot.com"
+    "project_number": "586165925140",
+    "project_id": "escanervidon-cafb1",
+    "storage_bucket": "escanervidon-cafb1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:669447044450:android:8a65bf69eedae72d09c03b",
+        "mobilesdk_app_id": "1:586165925140:android:0883bb99493e17482afe01",
         "android_client_info": {
           "package_name": "com.example.escanervidon"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "669447044450-jt5n8q9h80992hprd653ef4ke743firh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCmY18On6n19yjM4D-E1xWKlYvdocPKzgk"
+          "current_key": "AIzaSyCxnPHjP6SavZ_VqEZG_NS6cy10W14ZpvI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "669447044450-jt5n8q9h80992hprd653ef4ke743firh.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
