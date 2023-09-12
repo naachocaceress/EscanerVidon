@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Pantalla_Principal extends AppCompatActivity {
-    String version_actual = "1.3";
+    String version_actual = "1.3.1";
     String version_firebase;
     String url_firebase;
 

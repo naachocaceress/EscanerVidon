@@ -20,6 +20,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     List<Button> btnScanList = new ArrayList<>(); // Lista de botones
 
     String sucuId = "";
