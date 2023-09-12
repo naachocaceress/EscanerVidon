@@ -9,40 +9,33 @@ import android.widget.Button;
 
 import Clases.MyReceiver;
 
-public class Inicio extends AppCompatActivity {
+public class Pantalla_Actualizar extends AppCompatActivity {
 
     MyReceiver oMyReceiver;
-
-    Button sig;
     Button btn_descargar;
+
+    String url, version;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.pantalla_actualizar);
+
+        version = getIntent().getStringExtra("version");
+        url = getIntent().getStringExtra("url");
 
         Init();
 
-        btn_descargar = (Button) findViewById(R.id.btn_Descargar);
+        btn_descargar = (Button) findViewById(R.id.btn_Actualizar);
         btn_descargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                oMyReceiver.Descargar();
+                oMyReceiver.Descargar(url);
             }
         });
-
-
-        sig = (Button)findViewById(R.id.button);
-    sig.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(Inicio.this, MainActivity.class);
-            startActivity(intent);
-        }
-    });
     }
 
     private void Init(){
-        oMyReceiver = new MyReceiver(Inicio.this);
+        oMyReceiver = new MyReceiver(Pantalla_Actualizar.this);
         oMyReceiver.registrar(oMyReceiver);
     }
 

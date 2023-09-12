@@ -76,8 +76,8 @@ public class MyReceiver  extends BroadcastReceiver {
     }
 
 
-    public void Descargar() {
-        String url = "";
+    public void Descargar(String url) {
+        //String url = "https://firebasestorage.googleapis.com/v0/b/escanervidon-cafb1.appspot.com/o/EscanerVidon1.1.apk?alt=media&token=aa56ce9b-f499-49a0-9606-9e6110f94b5d";
         DownloadManager.Request my_Request;
 
         my_DowloadManager=(DownloadManager) my_context.getSystemService(Context.DOWNLOAD_SERVICE);
