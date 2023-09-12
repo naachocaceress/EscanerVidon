@@ -28,7 +28,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/ic_vidonbar"
+            android:src="@drawable/escanervidonlogo"
             android:layout_gravity="start" />
 
         <TextView

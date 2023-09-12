@@ -78,64 +78,76 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        if(result != null){
-            if(result.getContents() == null){
-                Toast.makeText(this, "Lectura cancelada", Toast.LENGTH_LONG).show();
-            }
-            else {
-                if(result.getContents().startsWith("https://www.vidonbar.com.ar/vC.aspx?")) {
-                    String[] urlParts = result.getContents().split("\\?");
-                    String baseQueryParam = urlParts.length > 1 ? urlParts[1] : ""; // Obtener la parte después del '?'
+        if (result != null) {
+            if (result.getContents() == null) {
+                showToast("Lectura cancelada");
+            } else {
+                String qrContents = result.getContents();
+                if (isValidQRCode(qrContents)) {
+                    String id = extractIdFromQR(qrContents);
+                    if (id != null) {
+                        int base = extractBaseFromQR(qrContents);
+                        String destino = "https://www.vidonbar.com.ar/validacion.aspx?base=" + base + "&id=" + id + "&sucursal=" + sucuId;
 
-                    String base = null;
-                    if (baseQueryParam.startsWith("base=1")) {
-                        base = "1";
-                    } else if (baseQueryParam.startsWith("base=2")) {
-                        base = "2";
-                    } else if (baseQueryParam.startsWith("base=3")) {
-                        base = "3";
-                    }
+                        Intent intent = new Intent(this, WebActivity.class);
+                        intent.putExtra("URL", destino);
 
-                    if (base != null) {
-                        String id = null;
-
-                        if (urlParts.length > 1) {
-                            String query = urlParts[1]; // Obtener la parte de la cadena de consulta
-                            String[] queryParams = query.split("&"); // Dividir en parámetros
-
-                            // Iterar a través de los parámetros y encontrar el que comienza con "id="
-                            for (String param : queryParams) {
-                                if (param.startsWith("id=")) {
-                                    id = param.split("=")[1]; // Extraer el valor del parámetro "id"
-                                    break; // Salir del bucle una vez que se encuentra el valor
-                                }
-                            }
-                        }
-
-                        if (id != null) {
-                            String destino = "https://www.vidonbar.com.ar/validacion.aspx?base=" + base + "&id=" + id + "&sucursal=" + sucuId;
-
-                            Intent intent = new Intent(this, WebActivity.class);
-                            intent.putExtra("URL", destino);
-
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(this,"El QR no es valido", Toast.LENGTH_LONG).show();
-                        }
-
+                        startActivity(intent);
                     } else {
-                        Toast.makeText(this,"El QR no es valido", Toast.LENGTH_LONG).show();
+                        showToast("El QR no es válido");
                     }
-                }else
-                    Toast.makeText(this,"El QR no es valido", Toast.LENGTH_LONG).show();
+                } else {
+                    showToast("El QR no es válido");
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    private boolean isValidQRCode(String contents) {
+        return contents.startsWith("https://www.vidonbar.com.ar/vC.aspx?");
+    }
+
+    private String extractIdFromQR(String contents) {
+        String[] urlParts = contents.split("\\?");
+        if (urlParts.length > 1) {
+            String query = urlParts[1];
+            String[] queryParams = query.split("&");
+            for (String param : queryParams) {
+                if (param.startsWith("id=")) {
+                    return param.split("=")[1];
+                }
+            }
+        }
+        return null;
+    }
+
+    private int extractBaseFromQR(String contents) {
+        String[] urlParts = contents.split("\\?");
+        if (urlParts.length > 1) {
+            String query = urlParts[1];
+            String[] queryParams = query.split("&");
+            for (String param : queryParams) {
+                if (param.startsWith("base=")) {
+                    try {
+                        return Integer.parseInt(param.split("=")[1]);
+                    } catch (NumberFormatException e) {
+                        // Manejar el caso en el que base no es un número válido
+                        return -1; // Otra señal de que el QR no es válido
+                    }
+                }
+            }
+        }
+        return -1; // Otra señal de que el QR no es válido
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -143,25 +155,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

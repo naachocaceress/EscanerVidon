@@ -11,10 +11,11 @@ import Clases.MyReceiver;
 
 public class Pantalla_Actualizar extends AppCompatActivity {
 
-    MyReceiver oMyReceiver;
-    Button btn_descargar;
+    private MyReceiver downloadReceiver;
+    private Button btnDescargar;
 
-    String url, version;
+    private String url, version;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,32 +24,27 @@ public class Pantalla_Actualizar extends AppCompatActivity {
         version = getIntent().getStringExtra("version");
         url = getIntent().getStringExtra("url");
 
-        Init();
+        downloadReceiver = new MyReceiver(Pantalla_Actualizar.this);
+        downloadReceiver.registrar(downloadReceiver);
 
-        btn_descargar = (Button) findViewById(R.id.btn_Actualizar);
-        btn_descargar.setOnClickListener(new View.OnClickListener() {
+        btnDescargar = findViewById(R.id.btn_Actualizar);
+        btnDescargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                oMyReceiver.Descargar(url);
+                downloadReceiver.Descargar(url, "nombre_del_archivo.apk");
             }
         });
-    }
-
-    private void Init(){
-        oMyReceiver = new MyReceiver(Pantalla_Actualizar.this);
-        oMyReceiver.registrar(oMyReceiver);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        oMyReceiver.borrarRegistro(oMyReceiver);
+        downloadReceiver.borrarRegistro(downloadReceiver);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        oMyReceiver.registrar(oMyReceiver);
+        downloadReceiver.registrar(downloadReceiver);
     }
-
 }
