@@ -69,7 +69,6 @@ public class MyReceiver  extends BroadcastReceiver {
         }
     }
 
-
     public void Descargar(String url) {
         //String url = "https://firebasestorage.googleapis.com/v0/b/escanervidon-cafb1.appspot.com/o/EscanerVidon1.1.apk?alt=media&token=aa56ce9b-f499-49a0-9606-9e6110f94b5d";
         DownloadManager.Request my_Request;
@@ -94,7 +93,6 @@ public class MyReceiver  extends BroadcastReceiver {
         Log.e("ruta_apk", h);
         Log.e("Descargar", "OK");
         tamaño = my_DowloadManager.enqueue(my_Request);
-
     }
 
     public void  registrar(MyReceiver oMyReceiver){

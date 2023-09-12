@@ -6,10 +6,12 @@ import android.app.DownloadManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.window.SplashScreen;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -116,9 +118,10 @@ public class MainActivity extends AppCompatActivity {
                         if (id != null) {
                             String destino = "https://www.vidonbar.com.ar/validacion.aspx?base=" + base + "&id=" + id + "&sucursal=" + sucuId;
 
-                            Toast.makeText(this, "Abriendo navegador", Toast.LENGTH_LONG).show();
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(destino));
-                            startActivity(browserIntent);
+                            Intent intent = new Intent(this, WebActivity.class);
+                            intent.putExtra("URL", destino);
+
+                            startActivity(intent);
                         } else {
                             Toast.makeText(this,"El QR no es valido", Toast.LENGTH_LONG).show();
                         }
@@ -133,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
+
 }
 
 

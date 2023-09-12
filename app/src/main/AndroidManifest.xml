@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,9 @@
         android:theme="@style/Theme.EscanerVidon"
         tools:targetApi="31">
         <activity
+            android:name=".WebActivity"
+            android:exported="false" />
+        <activity
             android:name=".Pantalla_Principal"
             android:exported="true">
             <intent-filter>
@@ -27,15 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Pantalla_Actualizar"/>
-
+        <activity android:name=".Pantalla_Actualizar" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
-
-
+            android:exported="false"></activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
@@ -52,4 +50,4 @@
         </provider>
     </application>
 
-    </manifest>
+</manifest>

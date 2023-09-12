@@ -1,7 +1,10 @@
 package com.example.escanervidon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +45,22 @@ public class Pantalla_Principal extends AppCompatActivity {
 
         txtVersion.setText("Version " + version_actual);
 
-        Obtener_Firebase();
+        if (isInternetConnected()) {
+            Obtener_Firebase();
+        } else {
+            setContentView(R.layout.sin_conexion);
+        }
+
+
+    }
+
+    private boolean isInternetConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            return networkInfo != null && networkInfo.isConnected();
+        }
+        return false;
     }
 
     private void Obtener_Firebase(){
