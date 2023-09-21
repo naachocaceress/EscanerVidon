@@ -13,6 +13,7 @@ public class Pantalla_Actualizar extends AppCompatActivity {
 
     private MyReceiver downloadReceiver;
     private Button btnDescargar;
+    private Button btnCerrar;
 
     private String url, version;
 
@@ -32,6 +33,15 @@ public class Pantalla_Actualizar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 downloadReceiver.Descargar(url, "nombre_del_archivo.apk");
+            }
+        });
+
+        btnCerrar = findViewById(R.id.btnCerrar);
+        btnCerrar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Pantalla_Actualizar.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
