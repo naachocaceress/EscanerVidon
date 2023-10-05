@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     String id = extractIdFromQR(qrContents);
                     if (id != null) {
                         int base = extractBaseFromQR(qrContents);
-                        String destino = "https://sistemas.vidonbar.com.ar/validacion.aspx?base=" + base + "&id=" + id + "&sucursal=" + sucuId;
+                        String destino = "https://sistemas.vidonbar.com.ar/VVouchers/validacion.aspx?base=" + base + "&id=" + id + "&sucursal=" + sucuId;
 
                         Intent intent = new Intent(this, WebActivity.class);
                         intent.putExtra("URL", destino);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isValidQRCode(String contents) {
-        return contents.startsWith("https://www.vidonbar.com.ar/vC.aspx?") || contents.startsWith("https://sistemas.vidonbar.com.ar/vC.aspx?");
+        return contents.startsWith("https://www.vidonbar.com.ar/vC.aspx?") || contents.startsWith("https://sistemas.vidonbar.com.ar/vC.aspx?") || contents.startsWith("https://sistemas.vidonbar.com.ar/VVouchers/vC.aspx?");
     }
 
     private String extractIdFromQR(String contents) {
