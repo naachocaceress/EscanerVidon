@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnScanList.add(findViewById(R.id.btn4));
         btnScanList.add(findViewById(R.id.btn5));
         btnScanList.add(findViewById(R.id.btn6));
-
+        btnScanList.add(findViewById(R.id.btn7));
 
         //txtResultado = findViewById(R.id.txtResultado);
 
@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                         sucuId = "6";
                     }else if (btnScan.getId() == R.id.btn6) {
                         sucuId = "7";
+                    }else if (btnScan.getId() == R.id.btn7) {
+                        sucuId = "10";
                     }
 
                     // Aquí puedes usar btnScan como referencia al botón que se hizo clic

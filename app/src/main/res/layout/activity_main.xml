@@ -121,7 +121,7 @@
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
-                android:text="Barrio Jardin"
+                android:text="Jockey"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +154,19 @@
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn5" />
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:text="San Francisco"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn6" />
 
         </LinearLayout>
     </ScrollView>
